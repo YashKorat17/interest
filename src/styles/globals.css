@@ -94,3 +94,10 @@ body {
 .padding_container {
   padding: 0 8rem;
 }
+
+
+@media (max-width: 768px) {
+  .padding_container {
+    padding: 0 2rem;
+  }
+}

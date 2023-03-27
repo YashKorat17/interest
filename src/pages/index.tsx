@@ -34,7 +34,7 @@ export default function Home() {
               </div>
           <div className={styles.hero_form}>
 <form className={styles.form}> 
-<h1>User Survey Form</h1><br/>
+<h1>AmsTechs User Survey Form</h1><br/>
   <div className={styles.form_group}>
     <label htmlFor="name">Name</label>
     <input type="text" name="name" id="name" placeholder="Enter your name" />
