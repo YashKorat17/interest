@@ -26,15 +26,36 @@ export default function Home() {
                 <div className={styles.titlespan}>
                   <h1 className={styles.title}>Simplify Your Invoicing with AmsTechs</h1>
                 </div>
-                <p style={{fontSize:12,fontWeight:500}}>Say goodbye to the hassle of manual invoicing and payment tracking. [Your Company Name] offers a seamless and automated solution that saves you time and ensures accuracy. Fill out the form below to learn more and start streamlining your invoicing process today.</p>
+                <p style={{fontSize:14,fontWeight:400,letterSpacing:0.8,wordSpacing:1}}>Say goodbye to the hassle of manual invoicing and payment tracking. [Your Company Name] offers a seamless and automated solution that saves you time and ensures accuracy. Fill out the form below to learn more and start streamlining your invoicing process today.</p>
                 <br/>
                 <div className={styles.hero_button}>
-                  <button className={styles.button_light}>Interest <IconChevronRight size={18}/></button>
                 </div>
 
               </div>
           <div className={styles.hero_form}>
-hello
+<form className={styles.form}> 
+<h1>User Survey Form</h1><br/>
+  <div className={styles.form_group}>
+    <label htmlFor="name">Name</label>
+    <input type="text" name="name" id="name" placeholder="Enter your name" />
+  </div>
+  <div className={styles.form_group}>
+    <label htmlFor="email">Email</label>
+    <input type="email" name="email" id="email" placeholder="Enter your email" />
+  </div>
+  <div className={styles.form_group}>
+    <label htmlFor="phone">Phone</label>
+    <input type="tel" name="phone" id="phone" placeholder="Enter your phone" />
+  </div>
+  <div className={styles.form_group}>
+    <label htmlFor="message">Message</label>
+    <textarea name="message" id="message" placeholder="Enter your message" />
+  </div>
+  <div className={styles.form_group}>
+    <button className={styles.button_dark}>Submit</button>
+  </div>
+
+</form>
           </div>
             </div>
           </div>

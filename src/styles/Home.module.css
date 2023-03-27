@@ -67,3 +67,92 @@
 .hero_form{
   width: 50%;
 }
+
+.form{
+  width: 60%;
+  margin: auto;
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.form h1{
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: auto;
+}
+
+.form_group{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form_group label{
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.form_group input{
+  padding: 10px;
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+  outline: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.form_group input:focus{
+  border: 1px solid #006adc;
+}
+
+.form_group textarea{
+  padding: 10px;
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+  outline: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.form_group textarea:focus{
+  border: 1px solid #006adc;
+} 
+
+
+.form_group button{
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: #006adc;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form_group button:hover{
+  background-color: #0054a6;
+}
+
+@media screen and (max-width: 768px){
+  .hero{
+    flex-direction: column;
+  }
+  .hero_text{
+    width: 100%;
+  }
+  .hero_form{
+    width: 100%;
+  }
+  .form{
+    width: 100%;
+  }
+}
+
+
+
