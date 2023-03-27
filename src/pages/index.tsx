@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
+import { IconChevronRight } from '@tabler/icons-react'
 
 
 export default function Home() {
@@ -13,12 +14,31 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <nav style={styles.nav}>
-          <div>All Services For Invoice</div>
-          <div>
-            <button>Interest</button>
+        <div className='padding_container'>
+          <nav className={styles.nav}>
+            <div>All Services For Invoice <span className={styles.badge}>Invoice</span></div>
+            <div>
+            </div>
+          </nav>
+          <div className={styles.hero_container}>
+            <div className={styles.hero}>
+              <div className={styles.hero_text}>
+                <div className={styles.titlespan}>
+                  <h1 className={styles.title}>Simplify Your Invoicing with AmsTechs</h1>
+                </div>
+                <p style={{fontSize:12,fontWeight:500}}>Say goodbye to the hassle of manual invoicing and payment tracking. [Your Company Name] offers a seamless and automated solution that saves you time and ensures accuracy. Fill out the form below to learn more and start streamlining your invoicing process today.</p>
+                <br/>
+                <div className={styles.hero_button}>
+                  <button className={styles.button_light}>Interest <IconChevronRight size={18}/></button>
+                </div>
+
+              </div>
+          <div className={styles.hero_form}>
+hello
           </div>
-        </nav>
+            </div>
+          </div>
+        </div>
       </main>
     </>
   )

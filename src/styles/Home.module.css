@@ -1,8 +1,69 @@
 .nav{
-    background-color: #000;
-    color: #fff;
+    color: #000;
     padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.badge{
+    background-color: #c851ff34;
+    color: #6f2a7e;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.button_light{
+  background-color: transparent;
+    color: #006adc;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.title{
+  background: linear-gradient(0deg, #11181c 20%, rgba(17, 24, 28, 0) 45%), linear-gradient( 90deg, #0f3058 0%, #006adc 33.333%, #11181c 50%, #11181c 100% );
+    background-size: 300% 100%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -moz-background-clip: text;
+    -webkit-animation: intro-gradient 1.8s ease backwards;
+    animation: intro-gradient 1.8s ease backwards;
+    -webkit-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+    -webkit-text-fill-color: transparent;
+
+    font-size: 4rem;
+    font-weight: 400;
+}
+
+.titlespan{
+  -webkit-animation: fadeIn 0.4s ease backwards;
+    animation: fadeIn 0.4s ease backwards;
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+    margin:2rem 0px;
+}
+
+.hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 50px 0;
+}
+.hero_text{
+    margin-bottom: 20px;
+    width: 50%;
+}
+.hero_form{
+  width: 50%;
 }
