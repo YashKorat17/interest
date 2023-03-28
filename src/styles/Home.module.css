@@ -7,6 +7,24 @@
     border-bottom: 1px solid #d6d6d6;
 }
 
+.nav_link{
+font-size: 0.8rem;
+font-weight: 500;
+width: 30%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.nav_link a{
+  color: #000;
+  text-decoration: none;
+}
+
+.nav_link a:hover{
+  color: #006adc;
+}
+
 .badge{
     background-color: #c851ff34;
     color: #6f2a7e;
@@ -15,7 +33,9 @@
     font-size: 12px;
     font-weight: 600;
 }
-
+.hero_container{
+    height: 100vh;
+}
 .button_light{
   background-color: transparent;
     color: #006adc;
@@ -139,6 +159,90 @@
   background-color: #0054a6;
 }
 
+
+/* .*****************Plate Form ****************** */
+.plateform{
+  width: 100%;
+}
+.plateform_button_tab{
+  width: 20%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tabButton{
+  padding: 10px;
+  border: 2px solid #d6d6d6;
+  border-radius: 5px;
+  outline: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: transparent;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tabButton:hover{
+  border: 2px solid #006adc;
+}
+
+.tabButton.active{
+  border: 2px solid #006adc;
+}
+
+
+.plateform_content{
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.plateform_text{
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.plateform_text h1{
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.plateform_text p{
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+
+
+.lottie_animation{
+  width: 40%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+
+
+
+
+
 @media screen and (max-width: 768px){
 
 
@@ -151,6 +255,10 @@
     font-size: 10px;
     padding: 5px 10px;
     border-radius: 2px;
+  }
+
+  .nav_link{
+    display: none;
   }
 
 
@@ -173,6 +281,30 @@
     width: 100%;
   }
   .form{
+    width: 100%;
+  }
+
+  .plateform{
+    width: 100%;
+  }
+  .plateform_button_tab{
+    width: 100%;
+  }
+
+  .tabButton{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .plateform_content{
+    width: 100%;
+  }
+
+  .plateform_text{
+    width: 100%;
+  }
+
+  .lottie_animation{
     width: 100%;
   }
 }

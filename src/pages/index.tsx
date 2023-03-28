@@ -1,10 +1,36 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
-import { IconChevronRight } from '@tabler/icons-react'
+import { IconApi, IconChevronRight, IconDeviceDesktop, IconDeviceMobile } from '@tabler/icons-react'
+import { Button, Menu, Tabs } from '@mantine/core'
+import Link from 'next/link'
+import type { LottiePlayer } from 'lottie-web';
+import { useEffect, useRef, useState } from 'react'
 
 
 export default function Home() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [lottie, setLottie] = useState<LottiePlayer | null>(null);
+
+  useEffect(() => {
+    import('lottie-web').then((Lottie) => setLottie(Lottie.default));
+  }, []);
+
+  useEffect(() => {
+    if (lottie && ref.current) {
+      const animation = lottie.loadAnimation({
+        container: ref.current,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        // path to your animation file, place it inside public folder
+        path: '/lottie/Api.json',
+      });
+
+      return () => animation.destroy();
+    }
+  }, [lottie]);
+
   return (
     <>
       <Head>
@@ -17,7 +43,28 @@ export default function Home() {
         <div className='padding_container'>
           <nav className={styles.nav}>
             <div>All Services For Invoice <span className={styles.badge}>Invoice</span></div>
-            <div>
+            <div className={styles.nav_link}>
+              <Link
+                href="#"
+              >
+                <span className={styles.nav_link}>Home</span>
+              </Link>
+              <Link
+                href="/"
+              >
+                <span className={styles.nav_link}>Features</span>
+              </Link>
+              <Link
+                href="/"
+              >
+                <span className={styles.nav_link}>Pricing</span>
+              </Link>
+              <Link
+                href="/"
+              >
+                <span className={styles.nav_link}>Plateform</span>
+              </Link>
+
             </div>
           </nav>
           <div className={styles.hero_container}>
@@ -28,8 +75,7 @@ export default function Home() {
                 </div>
                 <p style={{fontSize:14,fontWeight:400,letterSpacing:0.8,wordSpacing:1}}>Say goodbye to the hassle of manual invoicing and payment tracking. [Your Company Name] offers a seamless and automated solution that saves you time and ensures accuracy. Fill out the form below to learn more and start streamlining your invoicing process today.</p>
                 <br/>
-                <div className={styles.hero_button}>
-                </div>
+                
 
               </div>
           <div className={styles.hero_form}>
@@ -51,6 +97,12 @@ export default function Home() {
     <label htmlFor="message">Message</label>
     <textarea name="message" id="message" placeholder="Enter your message" />
   </div>
+    
+    <input type="checkbox" id="terms" name="terms" defaultChecked/>
+    <label htmlFor="terms" style={{
+      fontSize: 10,
+    }}>Get Notified Me</label>
+
   <div className={styles.form_group}>
     <button className={styles.button_dark}>Submit</button>
   </div>
@@ -59,8 +111,57 @@ export default function Home() {
           </div>
             </div>
           </div>
+          <div className={styles.features}>
+        </div>
+        <div className={styles.pricing}>
+        </div>
+        <div className={styles.plateform}>
+          <div className={styles.plateform_button_tab}>
+            <button className={styles.tabButton}><IconDeviceDesktop size="0.8rem" /> Desktop</button>
+            <button className={styles.tabButton}><IconDeviceMobile size="0.8rem" /> Mobile</button>
+            <button className={styles.tabButton}><IconApi size="0.8rem" /> API</button>
+          </div>
+          <Desktop/>
+        </div>
+        
+          <div className={styles.footer}>
+            </div>
         </div>
       </main>
     </>
+  )
+}
+
+
+const Desktop = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [lottie, setLottie] = useState<LottiePlayer | null>(null);
+
+  useEffect(() => {
+    import('lottie-web').then((Lottie) => setLottie(Lottie.default));
+  }, []);
+
+  useEffect(() => {
+    if (lottie && ref.current) {
+      const animation = lottie.loadAnimation({
+        container: ref.current,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        // path to your animation file, place it inside public folder
+        path: '/lottie/Desktop.json',
+      });
+
+      return () => animation.destroy();
+    }
+  }, [lottie]);
+  return (
+    <div className={styles.plateform_content}>
+      <div className={styles.plateform_text}>
+        <h1>Create and Manage Invoices with Our Desktop Application</h1>
+        <p>Our desktop application allows you to easily create and manage invoices for your business. With a user-friendly interface and robust features, you can streamline your invoicing process and save time</p>
+      </div>
+      <div ref={ref} className={styles.lottie_animation}/>
+    </div>
   )
 }
