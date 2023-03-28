@@ -1,12 +1,24 @@
 .nav{
     color: #000;
-    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: hsla(0,0%,100%,.7);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    -webkit-transition: background-color .2s,color .2s;
+    transition: background-color .2s,color .2s;
+  }
+  .nav_container{
+    height: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #d6d6d6;
+    padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d6d6d6;
+  
 }
-
 .nav_link{
 font-size: 0.8rem;
 font-weight: 500;
@@ -88,12 +100,24 @@ align-items: center;
   width: 50%;
 }
 
+.design{
+  width: 40%;
+  height: 50%;
+  position: absolute;
+  z-index: -1;
+right: 0.5;
+  background: conic-gradient( from 180deg at 50% 50%, #0aefff -69.37deg, #0f83ff 31.88deg, #b056e7 120deg, #ff9966 204.37deg, #0aefff 290.63deg, #0f83ff 391.87deg );
+  transform: translateZ(0);
+  filter: blur(160px);
+  opacity: 0.6;
+}
+
 .form{
   width: 60%;
   margin: auto;
-  border: 1px solid #d6d6d6;
   border-radius: 5px;
   padding: 20px;
+  background-color: #fff;
 }
 
 .form h1{
@@ -126,6 +150,36 @@ align-items: center;
 
 .form_group input:focus{
   border: 1px solid #006adc;
+}
+
+.phone_code{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #d6d6d6;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.phone_code select{
+  width: 30%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.phone_code input{
+  width: 70%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 .form_group textarea{
@@ -209,7 +263,6 @@ align-items: center;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex-direction: column;
   z-index: 1;
 }
@@ -255,6 +308,9 @@ align-items: center;
     font-size: 10px;
     padding: 5px 10px;
     border-radius: 2px;
+  }
+  .c_name{
+    margin: auto;
   }
 
   .nav_link{

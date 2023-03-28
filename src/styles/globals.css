@@ -93,6 +93,8 @@ body {
 
 .padding_container {
   padding: 0 8rem;
+  width: inherit;
+  height: inherit;
 }
 
 

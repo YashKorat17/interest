@@ -6,30 +6,47 @@ import { Button, Menu, Tabs } from '@mantine/core'
 import Link from 'next/link'
 import type { LottiePlayer } from 'lottie-web';
 import { useEffect, useRef, useState } from 'react'
+import axios from 'axios'
+import { useMutation, useQuery } from 'react-query'
+import { useForm } from '@mantine/form'
 
 
 export default function Home() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [lottie, setLottie] = useState<LottiePlayer | null>(null);
-
-  useEffect(() => {
-    import('lottie-web').then((Lottie) => setLottie(Lottie.default));
-  }, []);
-
-  useEffect(() => {
-    if (lottie && ref.current) {
-      const animation = lottie.loadAnimation({
-        container: ref.current,
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        // path to your animation file, place it inside public folder
-        path: '/lottie/Api.json',
-      });
-
-      return () => animation.destroy();
+  const dataSend = useMutation({
+    mutationFn: async (values: any) => {
+      return await axios.post('https://www.devgroupdandiyaraas.in/index.php', values, { headers: { 'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    } })
+    },
+    onSuccess: (data) => {
+      console.log(data)
+    },
+    onError: (error) => {
+      console.log(error)
     }
-  }, [lottie]);
+
+
+
+  })
+
+  const getCountry = useQuery('getCountry', async () => {
+    return await axios.get('https://trial.mobiscroll.com/content/countries.json')
+  })
+
+
+
+  const form = useForm({
+    initialValues: {
+      name: '',
+      email: '',
+      phone: '',
+      message: '',
+      notify: true,
+      country: 'us',
+    }
+  })
+
+
 
   return (
     <>
@@ -40,93 +57,119 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className='padding_container'>
-          <nav className={styles.nav}>
-            <div>All Services For Invoice <span className={styles.badge}>Invoice</span></div>
-            <div className={styles.nav_link}>
-              <Link
-                href="#"
-              >
-                <span className={styles.nav_link}>Home</span>
-              </Link>
-              <Link
-                href="/"
-              >
-                <span className={styles.nav_link}>Features</span>
-              </Link>
-              <Link
-                href="/"
-              >
-                <span className={styles.nav_link}>Pricing</span>
-              </Link>
-              <Link
-                href="/"
-              >
-                <span className={styles.nav_link}>Plateform</span>
-              </Link>
 
-            </div>
-          </nav>
-          <div className={styles.hero_container}>
-            <div className={styles.hero}>
-              <div className={styles.hero_text}>
-                <div className={styles.titlespan}>
-                  <h1 className={styles.title}>Simplify Your Invoicing with AmsTechs</h1>
-                </div>
-                <p style={{fontSize:14,fontWeight:400,letterSpacing:0.8,wordSpacing:1}}>Say goodbye to the hassle of manual invoicing and payment tracking. [Your Company Name] offers a seamless and automated solution that saves you time and ensures accuracy. Fill out the form below to learn more and start streamlining your invoicing process today.</p>
-                <br/>
-                
+        <nav className={styles.nav}>
+          <div className="padding_container">
+            <div className={styles.nav_container}>
+
+
+              <div className={styles.c_name}>All Services For Invoice <span className={styles.badge}>Invoice</span></div>
+              <div className={styles.nav_link}>
+                <Link
+                  href="#"
+                >
+                  <span className={styles.nav_link}>Home</span>
+                </Link>
+                <Link
+                  href="/"
+                >
+                  <span className={styles.nav_link}>Features</span>
+                </Link>
+                <Link
+                  href="/"
+                >
+                  <span className={styles.nav_link}>Pricing</span>
+                </Link>
+                <Link
+                  href="#plateform"
+                >
+                  <span className={styles.nav_link}>Plateform</span>
+                </Link>
 
               </div>
-          <div className={styles.hero_form}>
-<form className={styles.form}> 
-<h1>AmsTechs User Survey Form</h1><br/>
-  <div className={styles.form_group}>
-    <label htmlFor="name">Name</label>
-    <input type="text" name="name" id="name" placeholder="Enter your name" />
-  </div>
-  <div className={styles.form_group}>
-    <label htmlFor="email">Email</label>
-    <input type="email" name="email" id="email" placeholder="Enter your email" />
-  </div>
-  <div className={styles.form_group}>
-    <label htmlFor="phone">Phone</label>
-    <input type="tel" name="phone" id="phone" placeholder="Enter your phone" />
-  </div>
-  <div className={styles.form_group}>
-    <label htmlFor="message">Message</label>
-    <textarea name="message" id="message" placeholder="Enter your message" />
-  </div>
-    
-    <input type="checkbox" id="terms" name="terms" defaultChecked/>
-    <label htmlFor="terms" style={{
-      fontSize: 10,
-    }}>Get Notified Me</label>
-
-  <div className={styles.form_group}>
-    <button className={styles.button_dark}>Submit</button>
-  </div>
-
-</form>
-          </div>
             </div>
           </div>
-          <div className={styles.features}>
+        </nav>
+        <div className="padding_container">
+
+        <div className={styles.hero_container}>
+          <div className={styles.hero}>
+            <div className={styles.hero_text}>
+              <div className={styles.titlespan}>
+                <h1 className={styles.title}>Simplify Your Invoicing with AmsTechs</h1>
+              </div>
+              <p style={{ fontSize: 14, fontWeight: 400, letterSpacing: 0.8, wordSpacing: 1 }}>Say goodbye to the hassle of manual invoicing and payment tracking. [Your Company Name] offers a seamless and automated solution that saves you time and ensures accuracy. Fill out the form below to learn more and start streamlining your invoicing process today.</p>
+              <br />
+
+
+            </div>
+            <div className={styles.hero_form}>
+              <div className={styles.design} />
+              <form className={styles.form} onSubmit={form.onSubmit((values)=>{
+                console.log(values);
+                dataSend.mutate(values);
+              })}>
+                <h1>AmsTechs User Survey Form</h1><br />
+                <div className={styles.form_group}>
+                  <label htmlFor="name">Name</label>
+                  <input type="text" name="name" id="name" placeholder="Enter your name" {...form.getInputProps("name")} required/>
+                </div>
+                <div className={styles.form_group}>
+                  <label htmlFor="email">Email</label>
+                  <input type="email" name="email" id="email" placeholder="Enter your email" {...form.getInputProps("email")} required/>
+                </div>
+                <div className={styles.form_group}>
+                  <label htmlFor="phone">Phone</label>
+                  <span className={styles.phone_code}>
+                    <select name="country" id="country" {...form.getInputProps('country')} >
+                      {getCountry.data?.data.map((country: any) => (
+                        <option value={country.value} key={country.value}>
+                          {country.text}
+                          </option>
+                      ))}
+                    </select>
+                  <input type="tel" name="phone" id="phone" placeholder="Enter your phone" {...form.getInputProps("phone")} required/>
+                  </span>
+                </div>
+                <div className={styles.form_group}>
+                  <label htmlFor="message">Message</label>
+                  <textarea name="message" id="message" placeholder="Enter your message" {...form.getInputProps("message")}/>
+                </div>
+
+                <input type="checkbox" id="terms" name="terms" 
+                {...form.getInputProps("notify", { type: 'checkbox' })}
+                 />
+                <label htmlFor="terms" style={{
+                  fontSize: 10,
+                }}>Get Notified Me</label>
+
+                <div className={styles.form_group}>
+                  <button className={styles.button_dark}>Submit</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+        <div className={styles.features}>
         </div>
         <div className={styles.pricing}>
         </div>
-        <div className={styles.plateform}>
+        <div className={styles.plateform} id="plateform">
           <div className={styles.plateform_button_tab}>
             <button className={styles.tabButton}><IconDeviceDesktop size="0.8rem" /> Desktop</button>
             <button className={styles.tabButton}><IconDeviceMobile size="0.8rem" /> Mobile</button>
             <button className={styles.tabButton}><IconApi size="0.8rem" /> API</button>
           </div>
-          <Desktop/>
+          {/* <Desktop/> */}
+          {/* <Mobile /> */}
+          <API />
         </div>
-        
-          <div className={styles.footer}>
-            </div>
+
+        <div className={styles.footer}>
         </div>
+
+</div>
       </main>
     </>
   )
@@ -161,7 +204,78 @@ const Desktop = () => {
         <h1>Create and Manage Invoices with Our Desktop Application</h1>
         <p>Our desktop application allows you to easily create and manage invoices for your business. With a user-friendly interface and robust features, you can streamline your invoicing process and save time</p>
       </div>
-      <div ref={ref} className={styles.lottie_animation}/>
+      <div ref={ref} className={styles.lottie_animation} />
+    </div>
+  )
+}
+
+
+const Mobile = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [lottie, setLottie] = useState<LottiePlayer | null>(null);
+
+  useEffect(() => {
+    import('lottie-web').then((Lottie) => setLottie(Lottie.default));
+  }, []);
+
+  useEffect(() => {
+    if (lottie && ref.current) {
+      const animation = lottie.loadAnimation({
+        container: ref.current,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        // path to your animation file, place it inside public folder
+        path: '/lottie/Mobile.json',
+      });
+
+      return () => animation.destroy();
+    }
+  }, [lottie]);
+  return (
+    <div className={styles.plateform_content}>
+      <div className={styles.plateform_text}>
+        <h1>Manage Your Business On-the-Go</h1>
+        <p>Our mobile invoicing app allows you to create, send, and track invoices from anywhere. Manage your business on-the-go with our user-friendly and intuitive interface. Try it today and streamline your invoicing process!</p>
+      </div>
+      <div ref={ref} className={styles.lottie_animation} />
+    </div>
+  )
+}
+
+
+
+
+
+const API = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [lottie, setLottie] = useState<LottiePlayer | null>(null);
+
+  useEffect(() => {
+    import('lottie-web').then((Lottie) => setLottie(Lottie.default));
+  }, []);
+
+  useEffect(() => {
+    if (lottie && ref.current) {
+      const animation = lottie.loadAnimation({
+        container: ref.current,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        // path to your animation file, place it inside public folder
+        path: '/lottie/Api.json',
+      });
+
+      return () => animation.destroy();
+    }
+  }, [lottie]);
+  return (
+    <div className={styles.plateform_content}>
+      <div className={styles.plateform_text}>
+        <h1> Invoice API for Easy Billing | Seamless Integration with Your System</h1>
+        <p>Streamline your billing process with our powerful invoice API. Our easy-to-use API integrates seamlessly with your system, providing efficient billing solutions. Try it today and enjoy simplified invoicing.</p>
+      </div>
+      <div ref={ref} className={styles.lottie_animation} />
     </div>
   )
 }
